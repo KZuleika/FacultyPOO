@@ -10,6 +10,7 @@ namespace Faculty
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
