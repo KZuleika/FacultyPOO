@@ -84,8 +84,7 @@ namespace Faculty
                         OpcionMostrarAlumnos();
                         break;
                     case 2:
-                        WriteLine("Opción no implementada");
-                        ReadKey();
+                        OpcionMostrarMaterias();
                         break;
                     case 0:
                         break;
@@ -107,6 +106,20 @@ namespace Faculty
 
             WriteLine("MATRICULA - APELLIDO, NOMBRE\n");
             controlEscolar.GetAlumnos().ForEach(a => WriteLine($"{a.Matricula} - {a.NombreCompleto}"));
+            WriteLine();
+            ReadKey();
+        }
+
+        static void OpcionMostrarMaterias()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*      SISTEMA DE CONTROL ESCOLAR (MOSTRAR MATERIAS)     *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            WriteLine("CLAVE\tDESCRIPCION\tCREDITOS\n");
+            controlEscolar.GetMaterias().ForEach(m => WriteLine($"{m.Clave}\t{m.Nombre}\t{m.Creditos}"));
             WriteLine();
             ReadKey();
         }

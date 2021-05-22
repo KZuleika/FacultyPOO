@@ -29,6 +29,12 @@ namespace Faculty
             alumnos.Sort((a1, a2) => a1.Matricula.CompareTo(a2.Matricula));
             return alumnos;
         }
-        
+
+        public List<Materia> GetMaterias()
+        {
+            List<Materia> materias = new List<Materia>(this.materias);
+            materias.Sort((m1, m2) => m1.Clave.CompareTo(m2.Clave));
+            return materias;
+        }
     }
 }
