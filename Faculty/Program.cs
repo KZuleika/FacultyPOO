@@ -35,15 +35,12 @@ namespace Faculty
                 {
                     case 1:
                         SubmenuMostrar();
-                        ReadKey();
                         break;
                     case 2:
                         OpcionAltaAlumnos();
-                        ReadKey();
                         break;
                     case 3:
-                        WriteLine("Opción no implementada");
-                        ReadKey();
+                        OpcionAsignarCalificaciones();
                         break;
                     case 4:
                         SubmenuReportes();
@@ -69,8 +66,59 @@ namespace Faculty
             WriteLine();
 
             Write("Ingrese la Matricula: "); int matricula = Convert.ToInt32(ReadLine());
-            Write("Ingrese el Nombre: "); string nombre = ReadLine();
-            Write("Ingrese el Apellido: "); string apellido = ReadLine();
+            
+            if (!controlEscolar.ValidarMatricula(matricula))
+            {
+                Write("Ingrese el Nombre: "); string nombre = ReadLine();
+                Write("Ingrese el Apellido: "); string apellido = ReadLine();
+                controlEscolar.NuevoAlumno(matricula, nombre, apellido);
+            }
+            else
+            {
+                WriteLine("MATRICULA EN USO\nLa matricula que ingresó ya está en uso por lo que no es válida. ");
+            }
+            WriteLine();
+            ReadKey();
+        }
+        static void OpcionAsignarCalificaciones()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*  SISTEMA DE CONTROL ESCOLAR (ASIGNAR CALIFICACIONES)   *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            Write("Ingrese la Matricula: "); int matricula = Convert.ToInt32(ReadLine());
+
+            if (controlEscolar.ValidarMatricula(matricula))
+            {
+                Write("Ingrese la Clave de la materia: "); int clave = Convert.ToInt32(ReadLine());
+                if (controlEscolar.ValidarClave(clave))
+                {
+                    if(!controlEscolar.EstatusMateria(matricula, clave))
+                    {
+                        Write("Ingrese la Calificación obtenida: "); int calificacion = Convert.ToInt32(ReadLine());
+                        controlEscolar.AsignarCalificacion(matricula, clave, calificacion);
+                    }
+                    else
+                    {
+                        WriteLine("ERROR\n");
+                        WriteLine("Solo se puede asignar una calificación a una materia no aprobada");
+                    }
+                }
+                else
+                {
+                    WriteLine("CLAV DE NO VÁLIDA");
+                    WriteLine("\nLa clave de la materia que ingresó NO está en uso por lo que no es válida. ");
+                }
+            }
+            else
+            {
+                WriteLine("MATRICULA NO VÁLIDA");
+                WriteLine("\nLa matricula que ingresó NO está en uso por lo que no es válida. ");
+            }
+            WriteLine();
+            ReadKey();
         }
 
         static void SubmenuMostrar()
@@ -118,7 +166,8 @@ namespace Faculty
             WriteLine();
 
             WriteLine("MATRICULA - APELLIDO, NOMBRE\n");
-            controlEscolar.GetAlumnos().ForEach(a => WriteLine($"{a.Matricula} - {a.NombreCompleto}"));
+            controlEscolar.GetAlumnos().ForEach(a => 
+                WriteLine($"{a.Matricula} - {a.NombreCompleto}"));
             WriteLine();
             ReadKey();
         }

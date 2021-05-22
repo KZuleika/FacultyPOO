@@ -36,5 +36,37 @@ namespace Faculty
             materias.Sort((m1, m2) => m1.Clave.CompareTo(m2.Clave));
             return materias;
         }
+
+        public bool ValidarMatricula(int matricula) =>
+            alumnos.Exists(a => a.Matricula == matricula);
+
+        public void NuevoAlumno(int matricula, string nombre, string apellido)
+        {
+            Alumno alumno = new Alumno(matricula, nombre, apellido);
+            this.alumnos.Add(alumno);
+
+            materias.ForEach(m =>
+            {
+                calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
+            });
+
+            //Falta actualizar los datos del TXT
+        }
+
+        public bool ValidarClave(int clave) =>
+            materias.Exists(m => m.Clave == clave);
+
+        public bool EstatusMateria(int matricula, int clave)
+        {
+            int calificacion = calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida;
+            if (calificacion >= 70) return true;
+            return false;
+        }
+
+        public void AsignarCalificacion(int matricula, int clave, int calificacion)
+        {
+            this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
+            //añadir al TXT
+        }
     }
 }
