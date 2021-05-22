@@ -8,5 +8,7 @@ namespace Faculty
 {
     class Materia
     {
+        public int Clave { get; }
+        public string Nombre { get; }
     }
 }
