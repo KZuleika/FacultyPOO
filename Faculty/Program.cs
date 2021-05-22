@@ -8,9 +8,10 @@ namespace Faculty
 {
     class Program
     {
+        static ControlEscolar controlEscolar;
         static void Main(string[] args)
         {
-
+            
         }
     }
 }
