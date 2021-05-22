@@ -118,8 +118,8 @@ namespace Faculty
             WriteLine("**********************************************************");
             WriteLine();
 
-            WriteLine("CLAVE\tDESCRIPCION\tCREDITOS\n");
-            controlEscolar.GetMaterias().ForEach(m => WriteLine($"{m.Clave}\t{m.Nombre}\t{m.Creditos}"));
+            WriteLine("CLAVE\tDESCRIPCION-CREDITOS\n");
+            controlEscolar.GetMaterias().ForEach(m => WriteLine($"{m.Clave}\t{m.Nombre} - {m.Creditos}"));
             WriteLine();
             ReadKey();
         }
