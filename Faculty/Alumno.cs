@@ -18,5 +18,6 @@ namespace Faculty
             Nombre = nombre;
             Apellido = apellido;
         }
+
     }
 }
