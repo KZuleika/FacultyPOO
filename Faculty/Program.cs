@@ -38,7 +38,7 @@ namespace Faculty
                         ReadKey();
                         break;
                     case 2:
-                        WriteLine("Opción no implementada");
+                        OpcionAltaAlumnos();
                         ReadKey();
                         break;
                     case 3:
@@ -58,6 +58,19 @@ namespace Faculty
                         break;
                 }
             } while (opcion != 0);
+        }
+
+        static void OpcionAltaAlumnos()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*       SISTEMA DE CONTROL ESCOLAR (ALTA DE ALUMNO)      *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            Write("Ingrese la Matricula: "); int matricula = Convert.ToInt32(ReadLine());
+            Write("Ingrese el Nombre: "); string nombre = ReadLine();
+            Write("Ingrese el Apellido: "); string apellido = ReadLine();
         }
 
         static void SubmenuMostrar()
