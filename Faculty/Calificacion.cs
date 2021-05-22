@@ -8,5 +8,15 @@ namespace Faculty
 {
     class Calificacion
     {
+        public int MatriculaAl { get; }
+        public int ClaveMat { get; }
+        public int CalificacionObtenida { get; }
+
+        public Calificacion(int matricula, int clave, int calificacion)
+        {
+            MatriculaAl = matricula;
+            ClaveMat = clave;
+            CalificacionObtenida = calificacion;
+        }
     }
 }

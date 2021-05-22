@@ -1,0 +1,7 @@
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\bin\Debug\Faculty.exe.config
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\bin\Debug\Faculty.exe
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\bin\Debug\Faculty.pdb
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.csprojAssemblyReference.cache
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.csproj.CoreCompileInputs.cache
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.exe
+C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.pdb

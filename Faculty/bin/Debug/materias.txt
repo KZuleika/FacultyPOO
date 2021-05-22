@@ -1,0 +1,10 @@
+45865|Mecanismos|6
+37965|Robotica|7
+68799|Vibraciones mecanicas|8
+97346|Control|6
+37158|Microcontroladores|7
+49201|Sistemas digitales|6
+77455|Quimica|6
+87615|Programacion|7
+93806|Algreba|6
+42295|Calculo|6
