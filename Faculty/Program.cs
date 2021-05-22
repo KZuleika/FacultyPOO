@@ -81,8 +81,7 @@ namespace Faculty
                 switch (opcion)
                 {
                     case 1:
-                        WriteLine("Opción no implementada");
-                        ReadKey();
+                        OpcionMostrarAlumnos();
                         break;
                     case 2:
                         WriteLine("Opción no implementada");
@@ -96,6 +95,20 @@ namespace Faculty
                         break;
                 }
             } while (opcion != 0);
+        }
+
+        static void OpcionMostrarAlumnos()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*       SISTEMA DE CONTROL ESCOLAR (MOSTRAR ALUMNOS)     *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            WriteLine("MATRICULA - APELLIDO, NOMBRE\n");
+            controlEscolar.GetAlumnos().ForEach(a => WriteLine($"{a.Matricula} - {a.NombreCompleto}"));
+            WriteLine();
+            ReadKey();
         }
 
         static void SubmenuReportes()

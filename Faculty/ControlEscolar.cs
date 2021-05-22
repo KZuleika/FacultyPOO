@@ -22,5 +22,13 @@ namespace Faculty
             calificaciones = EasyFile<Calificacion>.LoadDataFromFile("calificaciones.txt",
                tokens => new Calificacion(Convert.ToInt32(tokens[0]), Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2])));
         }
+
+        public List<Alumno> GetAlumnos()
+        {
+            List<Alumno> alumnos = new List<Alumno>(this.alumnos);
+            alumnos.Sort((a1, a2) => a1.Matricula.CompareTo(a2.Matricula));
+            return alumnos;
+        }
+        
     }
 }
