@@ -5,3 +5,10 @@ C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.csprojAssem
 C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.csproj.CoreCompileInputs.cache
 C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.exe
 C:\Users\kzcoc\Documents\GitHub\FacultyPOO\Faculty\obj\Debug\Faculty.pdb
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\obj\Debug\Faculty.csprojAssemblyReference.cache
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\obj\Debug\Faculty.csproj.CoreCompileInputs.cache
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\obj\Debug\Faculty.exe
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\obj\Debug\Faculty.pdb
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.exe.config
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.exe
+C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.pdb

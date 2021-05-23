@@ -209,7 +209,7 @@ namespace Faculty
                 switch (opcion)
                 {
                     case 1:
-                        WriteLine("Opción no implementada");
+                        PromedioTotaldeAlumnos();
                         ReadKey();
                         break;
                     case 2:
@@ -232,6 +232,19 @@ namespace Faculty
                         break;
                 }
             } while (opcion != 0);
+        }
+        static void PromedioTotaldeAlumnos()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("* SISTEMA DE CONTROL ESCOLAR (PROMEDIO TOTAL DE ALUMNOS) *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO GENERAL\n");
+            controlEscolar.GetPromedio();
+            WriteLine();
+            ReadKey();
         }
     }
 }

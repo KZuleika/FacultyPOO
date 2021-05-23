@@ -12,7 +12,7 @@ namespace Faculty
         private List<Alumno> alumnos;
         private List<Materia> materias;
         private List<Calificacion> calificaciones;
-
+       
         public ControlEscolar()
         {
             alumnos = EasyFile<Alumno>.LoadDataFromFile("alumnos.txt",
@@ -67,6 +67,17 @@ namespace Faculty
         {
             this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
             //añadir al TXT
+        }
+
+        public List<Reporte> GetPromedio()
+        {
+            List<Reporte> reportes=new List<Reporte>();
+            alumnos.ForEach(a =>
+            {
+               reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+               
+            });
+            return reportes;
         }
     }
 }
