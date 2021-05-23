@@ -90,5 +90,27 @@ namespace Faculty
             });
             return reportes;
         }
+        public List<Reporte> GetPromedioParcial()
+        {
+            List<Reporte> reportes=new List<Reporte>();
+            alumnos.ForEach(a =>
+            {
+               reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+            });
+            
+            reportes.ForEach(r =>
+            {
+                int i = 0, materiasCursadas=0;
+                r.Calificaciones.ForEach(c =>
+                {
+                    if (c.CalificacionObtenida >= 70) {
+                        i += c.CalificacionObtenida;
+                        materiasCursadas++;
+                    }
+                });
+                r.Promedio = i / materiasCursadas;
+            });
+            return reportes;
+        }
     }
 }

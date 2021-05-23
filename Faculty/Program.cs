@@ -213,7 +213,7 @@ namespace Faculty
                         ReadKey();
                         break;
                     case 2:
-                        WriteLine("Opción no implementada");
+                        PromedioParcialdeAlumnos();
                         ReadKey();
                         break;
                     case 3:
@@ -243,6 +243,21 @@ namespace Faculty
 
             WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO GENERAL\n");
             controlEscolar.GetPromedio().ForEach(r => {
+                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio}");
+            });
+            WriteLine();
+            ReadKey();
+        }
+        static void PromedioParcialdeAlumnos()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*SISTEMA DE CONTROL ESCOLAR (PROMEDIO PARCIAL DE ALUMNOS)*");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO PARCIAL\n");
+            controlEscolar.GetPromedioParcial().ForEach(r => {
                 WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio}");
             });
             WriteLine();
