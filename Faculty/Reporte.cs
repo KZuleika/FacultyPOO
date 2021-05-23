@@ -10,11 +10,13 @@ namespace Faculty
     {
         public Alumno Alumno { get; }     
         public List<Calificacion> Calificaciones { get; }
+        public float Promedio { get; set; }
         
         public Reporte(Alumno alumno, List<Calificacion> calificaciones)
         {
             Alumno = alumno;
             Calificaciones = calificaciones;
+            Promedio = -1;
         }
     }
 }

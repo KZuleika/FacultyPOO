@@ -49,7 +49,6 @@ namespace Faculty
             {
                 calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
             });
-
             //Falta actualizar los datos del TXT
         }
 
@@ -75,7 +74,19 @@ namespace Faculty
             alumnos.ForEach(a =>
             {
                reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
-               
+            });
+            
+            reportes.ForEach(r =>
+            {
+                int i = 0, materiasCursadas=0;
+                r.Calificaciones.ForEach(c =>
+                {
+                    if (c.CalificacionObtenida >= 0) {
+                        i += c.CalificacionObtenida;
+                        materiasCursadas++;
+                    }
+                });
+                r.Promedio = i / materiasCursadas;
             });
             return reportes;
         }

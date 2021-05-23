@@ -242,7 +242,9 @@ namespace Faculty
             WriteLine();
 
             WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO GENERAL\n");
-            controlEscolar.GetPromedio();
+            controlEscolar.GetPromedio().ForEach(r => {
+                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio}");
+            });
             WriteLine();
             ReadKey();
         }
