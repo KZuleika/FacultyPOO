@@ -8,15 +8,13 @@ namespace Faculty
 {
     class Reporte
     {
-        public Alumno Alumno { get; }
-        public Materia Materia { get; }
-        public Calificacion Calificacion { get; }
-
-        public Reporte(Alumno alumno, Materia materia, Calificacion calificacion)
+        public Alumno Alumno { get; }     
+        public List<Calificacion> Calificaciones { get; }
+        
+        public Reporte(Alumno alumno, List<Calificacion> calificaciones)
         {
             Alumno = alumno;
-            Materia = materia;
-            Calificacion = calificacion;
+            Calificaciones = calificaciones;
         }
     }
 }
