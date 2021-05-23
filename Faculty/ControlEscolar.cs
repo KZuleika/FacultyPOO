@@ -68,5 +68,6 @@ namespace Faculty
             this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
             //añadir al TXT
         }
+
     }
 }
