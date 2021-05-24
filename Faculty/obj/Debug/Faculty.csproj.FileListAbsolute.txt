@@ -12,3 +12,10 @@ C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programació
 C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.exe.config
 C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.exe
 C:\Users\ramse\OneDrive\Documentos\Facultad ingenieria\4to semestre\Programación OO\FacultyPOO\Faculty\bin\Debug\Faculty.pdb
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\bin\Debug\Faculty.exe.config
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\bin\Debug\Faculty.exe
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\bin\Debug\Faculty.pdb
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\obj\Debug\Faculty.csprojAssemblyReference.cache
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\obj\Debug\Faculty.csproj.CoreCompileInputs.cache
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\obj\Debug\Faculty.exe
+D:\Mis cosas\Eskulxd\4to sem\Programacion orientada a objetos\PROYECTO A1\Faculty\obj\Debug\Faculty.pdb

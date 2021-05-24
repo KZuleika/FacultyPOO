@@ -42,12 +42,6 @@ namespace Faculty
 
         public void NuevoAlumno(int matricula, string nombre, string apellido)
         {
-            //Alumno alumno = new Alumno(matricula, nombre, apellido);
-            //this.alumnos.Add(alumno);
-             /*materias.ForEach(m =>
-            {
-                calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
-            });*/
             alumnos.Add(new Alumno(matricula, nombre, apellido));
             EasyFile<Alumno>.SaveDataToFile("alumnos.txt",
                                                 new string[]{"Matricula","Nombre","Apellido"},
@@ -77,8 +71,6 @@ namespace Faculty
             EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
                                                 new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
                                                 calificaciones);
-            //this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
-            //añadir al TXT
         }
 
         public List<Reporte> GetPromedio()
