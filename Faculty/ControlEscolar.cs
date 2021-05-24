@@ -42,14 +42,23 @@ namespace Faculty
 
         public void NuevoAlumno(int matricula, string nombre, string apellido)
         {
-            Alumno alumno = new Alumno(matricula, nombre, apellido);
-            this.alumnos.Add(alumno);
-
+            //Alumno alumno = new Alumno(matricula, nombre, apellido);
+            //this.alumnos.Add(alumno);
+             /*materias.ForEach(m =>
+            {
+                calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
+            });*/
+            alumnos.Add(new Alumno(matricula, nombre, apellido));
+            EasyFile<Alumno>.SaveDataToFile("alumnos.txt",
+                                                new string[]{"Matricula","Nombre","Apellido"},
+                                                alumnos);
             materias.ForEach(m =>
             {
                 calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
+                EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
+                                                new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
+                                                calificaciones);
             });
-            //Falta actualizar los datos del TXT
         }
 
         public bool ValidarClave(int clave) =>
@@ -64,7 +73,11 @@ namespace Faculty
 
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
-            this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
+            calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
+            EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
+                                                new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
+                                                calificaciones);
+            //this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
             //añadir al TXT
         }
 
