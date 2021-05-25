@@ -117,5 +117,15 @@ namespace Faculty
             });
             return reportes;
         }
+        public List<Reprobados> GetReprobados()
+        {
+            List<Reprobados> reprobado = new List<Reprobados>();
+            alumnos.ForEach(a =>
+            {
+                reprobado.Add(new Reprobados(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula)));
+            }
+            ); 
+            return reprobado;
+        }
     }
 }
