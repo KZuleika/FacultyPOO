@@ -42,14 +42,17 @@ namespace Faculty
 
         public void NuevoAlumno(int matricula, string nombre, string apellido)
         {
-            Alumno alumno = new Alumno(matricula, nombre, apellido);
-            this.alumnos.Add(alumno);
-
+            alumnos.Add(new Alumno(matricula, nombre, apellido));
+            EasyFile<Alumno>.SaveDataToFile("alumnos.txt",
+                                                new string[]{"Matricula","Nombre","Apellido"},
+                                                alumnos);
             materias.ForEach(m =>
             {
                 calificaciones.Add(new Calificacion(matricula, m.Clave, -1));
+                EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
+                                                new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
+                                                calificaciones);
             });
-            //Falta actualizar los datos del TXT
         }
 
         public bool ValidarClave(int clave) =>
@@ -64,8 +67,10 @@ namespace Faculty
 
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
-            this.calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
-            //añadir al TXT
+            calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
+            EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
+                                                new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
+                                                calificaciones);
         }
 
         public List<Reporte> GetPromedio()
@@ -89,6 +94,38 @@ namespace Faculty
                 r.Promedio = i / materiasCursadas;
             });
             return reportes;
+        }
+        public List<Reporte> GetPromedioParcial()
+        {
+            List<Reporte> reportes=new List<Reporte>();
+            alumnos.ForEach(a =>
+            {
+               reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+            });
+            
+            reportes.ForEach(r =>
+            {
+                int i = 0, materiasCursadas=0;
+                r.Calificaciones.ForEach(c =>
+                {
+                    if (c.CalificacionObtenida >= 70) {
+                        i += c.CalificacionObtenida;
+                        materiasCursadas++;
+                    }
+                });
+                r.Promedio = i / materiasCursadas;
+            });
+            return reportes;
+        }
+        public List<Reprobados> GetReprobados()
+        {
+            List<Reprobados> reprobado = new List<Reprobados>();
+            alumnos.ForEach(a =>
+            {
+                reprobado.Add(new Reprobados(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula)));
+            }
+            ); 
+            return reprobado;
         }
     }
 }
