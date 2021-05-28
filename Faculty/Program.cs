@@ -72,6 +72,8 @@ namespace Faculty
                 Write("Ingrese el Nombre: "); string nombre = ReadLine();
                 Write("Ingrese el Apellido: "); string apellido = ReadLine();
                 controlEscolar.NuevoAlumno(matricula, nombre, apellido);
+
+                WriteLine("\n\nALUMNO INGRESADO CON ÉXITO\n");
             }
             else
             {
@@ -99,10 +101,12 @@ namespace Faculty
                     {
                         Write("Ingrese la Calificación obtenida: "); int calificacion = Convert.ToInt32(ReadLine());
                         controlEscolar.AsignarCalificacion(matricula, clave, calificacion);
+
+                        WriteLine("\n\nCALIFICACIÓN ASIGNADA CON ÉXITO\n\n");
                     }
                     else
                     {
-                        WriteLine("ERROR\n");
+                        WriteLine("\n\nERROR");
                         WriteLine("Solo se puede asignar una calificación a una materia no aprobada");
                     }
                 }
