@@ -95,6 +95,7 @@ namespace Faculty
             });
             return reportes;
         }
+
         public List<Reporte> GetPromedioParcial()
         {
             List<Reporte> reportes=new List<Reporte>();
@@ -117,14 +118,29 @@ namespace Faculty
             });
             return reportes;
         }
+
         public List<Reprobados> GetReprobados()
         {
             List<Reprobados> reprobado = new List<Reprobados>();
             alumnos.ForEach(a =>
+                              reprobado.Add(new Reprobados(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula)))
+            );
+           
+            reprobado.ForEach(r =>
             {
-                reprobado.Add(new Reprobados(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula)));
+                
+                r.Calificaciones.ForEach(c =>
+                {
+                    if (c.CalificacionObtenida < 70 && c.CalificacionObtenida>=0 )
+                    {
+                     r.Materias.Add(new Materia (c.ClaveMat,materias.Find(m=>(c.ClaveMat==m.Clave)).Nombre,materias.Find(m=>(c.ClaveMat==m.Clave)).Creditos));                                 
+                      
+                    }
+                });
             }
-            ); 
+            );
+
+
             return reprobado;
         }
     }

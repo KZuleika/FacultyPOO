@@ -273,7 +273,10 @@ namespace Faculty
 
             WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tMaterias reprobadas\n");
             controlEscolar.GetReprobados().ForEach(r => {
-                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.MateriasReprobadas}");
+                WriteLine($"\n\n{r.Alumno.Matricula} - {r.Alumno.NombreCompleto}");
+                r.Materias.ForEach(m => {
+                   Write($"\n\t\t\t\t{m.Nombre}"); 
+                });
             });
             WriteLine();
             ReadKey();

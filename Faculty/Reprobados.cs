@@ -10,13 +10,13 @@ namespace Faculty
     {
         public Alumno Alumno { get; }
         public List<Calificacion> Calificaciones { get; }
-        public List<Materia> MateriasReprobadas { get; }
+        public List<Materia> Materias { get; }
 
         public Reprobados(Alumno alumno, List<Calificacion> calificaciones)
         {
             Alumno = alumno;
             Calificaciones = calificaciones;
-            MateriasReprobadas = MateriasReprobadas;
+            Materias = new List<Materia> ();
         }
     }
 }
