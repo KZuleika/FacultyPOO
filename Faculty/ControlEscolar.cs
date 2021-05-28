@@ -122,7 +122,9 @@ namespace Faculty
                         materiasCursadas++;
                     }
                 });
-                r.Promedio = i / materiasCursadas;
+
+                if (materiasCursadas > 0) r.Promedio = i / materiasCursadas;
+                else r.Promedio = 0;
             });
             return reportes;
         }
