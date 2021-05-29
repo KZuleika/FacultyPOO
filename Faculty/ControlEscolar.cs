@@ -86,14 +86,8 @@ namespace Faculty
             reportes.ForEach(r =>
             {
                 int i = 0;
-                r.Calificaciones.ForEach(c =>
-                {
-                    if (c.CalificacionObtenida >= 0) {
-                        i += c.CalificacionObtenida;
-                    }
-                });
+                r.Calificaciones.ForEach(c => i += c.CalificacionObtenida);
                 r.Promedio = i / r.Calificaciones.Count;
-
             });
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
             return reportes;
@@ -112,12 +106,7 @@ namespace Faculty
             reportes.ForEach(r =>
             {
                 int i = 0;
-                r.Calificaciones.ForEach(c =>
-                {
-                    if (c.CalificacionObtenida >= 70) {
-                        i += c.CalificacionObtenida;
-                    }
-                });
+                r.Calificaciones.ForEach(c => i += c.CalificacionObtenida);
                 r.Promedio = i / r.Calificaciones.Count;
             });
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
@@ -146,10 +135,9 @@ namespace Faculty
         public List<Materia> GetExtraordinarios()
         {
             List<Materia> materias = new List<Materia>(this.materias);
-            calificaciones.FindAll(c => c.CalificacionObtenida < 70).ForEach(c => 
-                {
-                    materias.Find(m=> m.Clave == c.ClaveMat).NumeroReprobados++;
-                });
+            calificaciones.FindAll(c => 
+                c.CalificacionObtenida < 70).ForEach(c =>  
+                    materias.Find(m => m.Clave == c.ClaveMat).NumeroReprobados++);
 
             materias.RemoveAll(m => m.NumeroReprobados<=0);
             materias.Sort((m1, m2) => m1.NumeroReprobados.CompareTo(m2.NumeroReprobados));
