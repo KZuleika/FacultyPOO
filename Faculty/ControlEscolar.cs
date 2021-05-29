@@ -95,6 +95,7 @@ namespace Faculty
                 r.Promedio = i / r.Calificaciones.Count;
 
             });
+            reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
             return reportes;
         }
       
