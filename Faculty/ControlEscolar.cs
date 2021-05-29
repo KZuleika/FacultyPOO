@@ -21,8 +21,6 @@ namespace Faculty
                 tokens => new Materia(Convert.ToInt32(tokens[0]), tokens[1], Convert.ToInt32(tokens[2])));
             calificaciones = EasyFile<Calificacion>.LoadDataFromFile("calificaciones.txt",
                tokens => new Calificacion(Convert.ToInt32(tokens[0]), Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2])));
-            calificaciones.FindAll(c => c.CalificacionObtenida >= 0 && c.CalificacionObtenida < 70).ForEach(c =>
-                   materias.Find(m => m.Clave == c.ClaveMat).NumeroReprobados++);
         }
 
         public List<Alumno> GetAlumnos()
@@ -73,7 +71,7 @@ namespace Faculty
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
             calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
-            if(EstatusMateria(matricula, clave) == 0) materias.Find(m => m.Clave == clave).NumeroReprobados++;
+            //if(EstatusMateria(matricula, clave) == 0) materias.Find(m => m.Clave == clave).NumeroReprobados++;
             EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
                                                 new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
                                                 calificaciones);
@@ -138,13 +136,27 @@ namespace Faculty
             return reprobados;
         }
 
+        public int NumeroReprobados(Materia materia)
+        {
+            int nreprobados = 0;
+            calificaciones.FindAll(c => c.ClaveMat == materia.Clave).ForEach(c =>
+            {
+                if (EstatusMateria(c.MatriculaAl, c.ClaveMat) == 0) nreprobados++;
+            });
+            return nreprobados;
+        }
+
         public List<Materia> GetExtraordinarios()
         {
-            List<Materia> materias = new List<Materia>(this.materias);
-           
-            materias.RemoveAll(m => m.NumeroReprobados<=0);
-            materias.Sort((m1, m2) => m1.NumeroReprobados.CompareTo(m2.NumeroReprobados));
-            return materias;
+            List<Materia> extraordinarios = new List<Materia>();
+
+            materias.ForEach(m =>
+            {
+                if (calificaciones.Exists(c => c.ClaveMat == m.Clave && EstatusMateria(c.MatriculaAl, c.ClaveMat) == 0))
+                    extraordinarios.Add(m);
+            });
+
+            return extraordinarios;
         }
     }
 }

@@ -298,7 +298,7 @@ namespace Faculty
             controlEscolar.GetExtraordinarios().ForEach(m => 
             {
                 WriteLine($"{m.Clave} - {m.Nombre}");
-                WriteLine($"\tCreditos: {m.Creditos}\n\tAlumnos reprobados: {m.NumeroReprobados}\n");
+                WriteLine($"\tCreditos: {m.Creditos}\n\tAlumnos reprobados: {controlEscolar.NumeroReprobados(m)}\n");
             });
 
             WriteLine();
