@@ -20,6 +20,13 @@ namespace Faculty
             Materias = new List<Materia>();
         }
 
+        public Reporte(Alumno alumno, List<Calificacion> calificaciones, List<Materia> materias)
+        {
+            Alumno = alumno;
+            Calificaciones = calificaciones;
+            Materias = materias;
+        }
+
         public float Promedio()
         {
             int promedio = 0;

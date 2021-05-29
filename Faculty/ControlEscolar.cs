@@ -85,8 +85,10 @@ namespace Faculty
             });
 
             reportes.RemoveAll(r => r.Calificaciones.Count < 1);
+            reportes.ForEach(r =>
+                r.Calificaciones.ForEach(c =>
+                    r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
 
-           
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
             return reportes;
         }
@@ -100,6 +102,9 @@ namespace Faculty
             });
 
             reportes.RemoveAll(r => r.Calificaciones.Count < 1);
+            reportes.ForEach(r =>
+                r.Calificaciones.ForEach(c =>
+                    r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
 
             return reportes;
@@ -108,15 +113,18 @@ namespace Faculty
         public List<Reporte> GetReprobados()
         {
             List<Reporte> reprobados = new List<Reporte>();
+            
             alumnos.ForEach(a =>
-                reprobados.Add(new Reporte(a, calificaciones.FindAll(c => 
-                    c.MatriculaAl == a.Matricula && EstatusMateria(a.Matricula, c.ClaveMat)==0)))
+                reprobados.Add(new Reporte(a, 
+                    calificaciones.FindAll(c => c.MatriculaAl == a.Matricula && EstatusMateria(a.Matricula, c.ClaveMat)==0)
+                    ))
             );
+
 
             reprobados.RemoveAll(r => r.Calificaciones.Count < 1);
 
-            reprobados.ForEach(r => 
-                r.Calificaciones.ForEach(c => 
+            reprobados.ForEach(r =>
+                r.Calificaciones.ForEach(c =>
                     r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
             reprobados.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
 
