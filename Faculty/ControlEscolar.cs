@@ -135,7 +135,7 @@ namespace Faculty
         public List<Materia> GetExtraordinarios()
         {
             List<Materia> materias = new List<Materia>(this.materias);
-            calificaciones.FindAll(c => c.CalificacionObtenida < 70).ForEach(c =>  
+            calificaciones.FindAll(c => c.CalificacionObtenida >= 0 && c.CalificacionObtenida < 70).ForEach(c =>  
                     materias.Find(m => m.Clave == c.ClaveMat).NumeroReprobados++);
 
             materias.RemoveAll(m => m.NumeroReprobados<=0);
