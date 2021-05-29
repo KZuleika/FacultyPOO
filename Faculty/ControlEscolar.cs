@@ -71,7 +71,6 @@ namespace Faculty
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
             calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
-            //if(EstatusMateria(matricula, clave) == 0) materias.Find(m => m.Clave == clave).NumeroReprobados++;
             EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
                                                 new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
                                                 calificaciones);
@@ -87,12 +86,7 @@ namespace Faculty
 
             reportes.RemoveAll(r => r.Calificaciones.Count < 1);
 
-            reportes.ForEach(r =>
-            {
-                int i = 0;
-                r.Calificaciones.ForEach(c => i += c.CalificacionObtenida);
-                r.Promedio = i / r.Calificaciones.Count;
-            });
+           
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
             return reportes;
         }
@@ -106,23 +100,16 @@ namespace Faculty
             });
 
             reportes.RemoveAll(r => r.Calificaciones.Count < 1);
-
-            reportes.ForEach(r =>
-            {
-                int i = 0;
-                r.Calificaciones.ForEach(c => i += c.CalificacionObtenida);
-                r.Promedio = i / r.Calificaciones.Count;
-            });
             reportes.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
 
             return reportes;
         }
 
-        public List<Reprobados> GetReprobados()
+        public List<Reporte> GetReprobados()
         {
-            List<Reprobados> reprobados = new List<Reprobados>();
+            List<Reporte> reprobados = new List<Reporte>();
             alumnos.ForEach(a =>
-                reprobados.Add(new Reprobados(a, calificaciones.FindAll(c => 
+                reprobados.Add(new Reporte(a, calificaciones.FindAll(c => 
                     c.MatriculaAl == a.Matricula && EstatusMateria(a.Matricula, c.ClaveMat)==0)))
             );
 

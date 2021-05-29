@@ -10,14 +10,25 @@ namespace Faculty
     {
         public Alumno Alumno { get; }     
         public List<Calificacion> Calificaciones { get; }
-        public float Promedio { get; set; }
-        
+        public List<Materia> Materias { get; }
+
+
         public Reporte(Alumno alumno, List<Calificacion> calificaciones)
         {
             Alumno = alumno;
             Calificaciones = calificaciones;
-            Promedio = -1;
+            Materias = new List<Materia>();
         }
 
+        public float Promedio()
+        {
+            int promedio = 0;
+            if (Calificaciones.Count > 0)
+            {
+                Calificaciones.ForEach(c => promedio += c.CalificacionObtenida);
+                promedio /= Calificaciones.Count;
+            }
+            return promedio;
+        }
     }
 }
