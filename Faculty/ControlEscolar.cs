@@ -78,51 +78,32 @@ namespace Faculty
             List<Reporte> reportes=new List<Reporte>();
             alumnos.ForEach(a =>
             {
-                if (NumMateriasCursadas(a.Matricula) > 0)
-                    reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+                reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula && c.CalificacionObtenida >= 0)));
             });
-            
+
+            reportes.RemoveAll(r => r.Calificaciones.Count < 1);
+
             reportes.ForEach(r =>
             {
-                int i = 0, materiasCursadas=0;
+                int i = 0;
                 r.Calificaciones.ForEach(c =>
                 {
                     if (c.CalificacionObtenida >= 0) {
                         i += c.CalificacionObtenida;
-                        materiasCursadas++;
                     }
                 });
-                if (materiasCursadas <= 0) 
-                {
-                    r.Promedio = 0;
-                }
-                else
-                {
-                    r.Promedio = i / materiasCursadas;
-                }
-                
+                r.Promedio = i / r.Calificaciones.Count;
+
             });
             return reportes;
         }
-
-        public int NumMateriasCursadas(int matricula)
-        {
-            int materiasCursadas = 0; ;
-            calificaciones.FindAll(c => c.MatriculaAl == matricula).ForEach(c => 
-            {
-                if (c.CalificacionObtenida > 0) 
-                    materiasCursadas++;
-            });
-            return materiasCursadas;
-        }
-        
+      
         public List<Reporte> GetPromedioParcial()
         {
             List<Reporte> reportes = new List<Reporte>();
             alumnos.ForEach(a =>
             {
-                if(NumMateriasCursadas(a.Matricula) > 0)
-                    reportes.Add(new Reporte(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula && c.CalificacionObtenida>=70))) ;
+                reportes.Add(new Reporte(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula && c.CalificacionObtenida>=70))) ;
             });
 
             reportes.RemoveAll(r => r.Calificaciones.Count < 1);
@@ -137,8 +118,6 @@ namespace Faculty
                     }
                 });
                 r.Promedio = i / r.Calificaciones.Count;
-                
-                
             });
             return reportes;
         }
