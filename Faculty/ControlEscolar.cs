@@ -58,16 +58,20 @@ namespace Faculty
         public bool ValidarClave(int clave) =>
             materias.Exists(m => m.Clave == clave);
 
-        public bool EstatusMateria(int matricula, int clave)
+        public int EstatusMateria(int matricula, int clave)
         {
             int calificacion = calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida;
-            if (calificacion >= 70) return true;
-            return false;
+            if (calificacion >= 70) return 1; //aprobado
+            if (calificacion >= 0) return 0; //reprobado
+            return -1; //no cursada
         }
+
+
 
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
             calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
+            if(EstatusMateria(matricula, clave) == 0) materias.Find(m => m.Clave == clave).NumeroReprobados++;
             EasyFile<Calificacion>.SaveDataToFile("calificaciones.txt",
                                                 new []{"MatriculaAl","ClaveMat","CalificacionObtenida"},
                                                 calificaciones);

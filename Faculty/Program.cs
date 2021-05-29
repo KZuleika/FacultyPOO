@@ -97,7 +97,7 @@ namespace Faculty
                 Write("Ingrese la Clave de la materia: "); int clave = Convert.ToInt32(ReadLine());
                 if (controlEscolar.ValidarClave(clave))
                 {
-                    if(!controlEscolar.EstatusMateria(matricula, clave))
+                    if(controlEscolar.EstatusMateria(matricula, clave) != 1)
                     {
                         Write("Ingrese la Calificación obtenida: "); int calificacion = Convert.ToInt32(ReadLine());
                         controlEscolar.AsignarCalificacion(matricula, clave, calificacion);
