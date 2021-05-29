@@ -279,7 +279,7 @@ namespace Faculty
             controlEscolar.GetReprobados().ForEach(r => {
                 WriteLine($"\n\n{r.Alumno.Matricula} - {r.Alumno.NombreCompleto}");
                 r.Materias.ForEach(m => {
-                   Write($"\n\t\t\t\t{m.Nombre}"); 
+                   WriteLine($"\t\t\t\t{m.Nombre}"); 
                 });
             });
             WriteLine();

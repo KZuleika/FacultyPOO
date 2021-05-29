@@ -124,27 +124,29 @@ namespace Faculty
 
         public List<Reprobados> GetReprobados()
         {
-            List<Reprobados> reprobado = new List<Reprobados>();
+            List<Reprobados> reprobados = new List<Reprobados>();
             alumnos.ForEach(a =>
-                              reprobado.Add(new Reprobados(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula)))
+                reprobados.Add(new Reprobados(a, calificaciones.FindAll(c => 
+                    c.MatriculaAl == a.Matricula && c.CalificacionObtenida < 70 && c.CalificacionObtenida>=0)))
             );
-           
-            reprobado.ForEach(r =>
-            {
+
+            reprobados.RemoveAll(r => r.Calificaciones.Count < 1);
+
+            reprobados.ForEach(r => 
+                r.Calificaciones.ForEach(c => 
+                    r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
+            
+            //reprobados.ForEach(r =>
+            //{
                 
-                r.Calificaciones.ForEach(c =>
-                {
-                    if (c.CalificacionObtenida < 70 && c.CalificacionObtenida>=0 )
-                    {
-                     r.Materias.Add(new Materia (c.ClaveMat,materias.Find(m=>(c.ClaveMat==m.Clave)).Nombre,materias.Find(m=>(c.ClaveMat==m.Clave)).Creditos));                                 
-                      
-                    }
-                });
-            }
-            );
+            //    r.Calificaciones.ForEach(c =>
+            //    {
+            //        r.Materias.Add(new Materia(c.ClaveMat, materias.Find(m => (c.ClaveMat == m.Clave)).Nombre, materias.Find(m => (c.ClaveMat == m.Clave)).Creditos));
+            //    });
+            //}
+            //);
 
-
-            return reprobado;
+            return reprobados;
         }
     }
 }
