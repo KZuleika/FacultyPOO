@@ -138,6 +138,7 @@ namespace Faculty
             reprobados.ForEach(r => 
                 r.Calificaciones.ForEach(c => 
                     r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
+            reprobados.Sort((r1, r2) => r1.Alumno.Matricula.CompareTo(r2.Alumno.Matricula));
 
             return reprobados;
         }
