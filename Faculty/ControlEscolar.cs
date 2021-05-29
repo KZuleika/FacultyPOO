@@ -21,6 +21,8 @@ namespace Faculty
                 tokens => new Materia(Convert.ToInt32(tokens[0]), tokens[1], Convert.ToInt32(tokens[2])));
             calificaciones = EasyFile<Calificacion>.LoadDataFromFile("calificaciones.txt",
                tokens => new Calificacion(Convert.ToInt32(tokens[0]), Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2])));
+            calificaciones.FindAll(c => c.CalificacionObtenida >= 0 && c.CalificacionObtenida < 70).ForEach(c =>
+                   materias.Find(m => m.Clave == c.ClaveMat).NumeroReprobados++);
         }
 
         public List<Alumno> GetAlumnos()
@@ -139,9 +141,7 @@ namespace Faculty
         public List<Materia> GetExtraordinarios()
         {
             List<Materia> materias = new List<Materia>(this.materias);
-            calificaciones.FindAll(c => c.CalificacionObtenida >= 0 && c.CalificacionObtenida < 70).ForEach(c =>  
-                    materias.Find(m => m.Clave == c.ClaveMat).NumeroReprobados++);
-
+           
             materias.RemoveAll(m => m.NumeroReprobados<=0);
             materias.Sort((m1, m2) => m1.NumeroReprobados.CompareTo(m2.NumeroReprobados));
             return materias;
