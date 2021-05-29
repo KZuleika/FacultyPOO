@@ -152,6 +152,7 @@ namespace Faculty
                 });
 
             materias.RemoveAll(m => m.NumeroReprobados<=0);
+            materias.Sort((m1, m2) => m1.NumeroReprobados.CompareTo(m2.NumeroReprobados));
             return materias;
         }
     }
