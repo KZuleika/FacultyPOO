@@ -225,7 +225,7 @@ namespace Faculty
                         ReadKey();
                         break;
                     case 4:
-                        WriteLine("Opción no implementada");
+                        Extraordinarios();
                         ReadKey();
                         break;
                     case 0:
@@ -282,6 +282,25 @@ namespace Faculty
                    WriteLine($"\t\t\t\t{m.Nombre}"); 
                 });
             });
+            WriteLine();
+            ReadKey();
+        }
+
+        static void Extraordinarios()
+        {
+            Clear();
+            WriteLine("**********************************************************");
+            WriteLine("*       SISTEMA DE CONTROL ESCOLAR (EXTRAORDINARIOS)     *");
+            WriteLine("**********************************************************");
+            WriteLine();
+
+            WriteLine("  ID  - MATERIA\t");
+            controlEscolar.GetExtraordinarios().ForEach(m => 
+            {
+                WriteLine($"{m.Clave} - {m.Nombre}");
+                WriteLine($"\tCreditos: {m.Creditos}\n\tAlumnos reprobados: {m.NumeroReprobados}\n");
+            });
+
             WriteLine();
             ReadKey();
         }

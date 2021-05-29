@@ -12,11 +12,14 @@ namespace Faculty
         public string Nombre { get; }
         public int Creditos { get; }
 
+        public int NumeroReprobados { get; set; }
+
         public Materia(int clave, string nombre, int creditos)
         {
             Clave = clave;
             Nombre = nombre;
             Creditos = creditos;
+            NumeroReprobados = 0;
         }
     }
 }
