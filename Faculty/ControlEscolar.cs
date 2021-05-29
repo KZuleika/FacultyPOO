@@ -125,7 +125,7 @@ namespace Faculty
             List<Reprobados> reprobados = new List<Reprobados>();
             alumnos.ForEach(a =>
                 reprobados.Add(new Reprobados(a, calificaciones.FindAll(c => 
-                    c.MatriculaAl == a.Matricula && c.CalificacionObtenida < 70 && c.CalificacionObtenida>=0)))
+                    c.MatriculaAl == a.Matricula && EstatusMateria(a.Matricula, c.ClaveMat)==0)))
             );
 
             reprobados.RemoveAll(r => r.Calificaciones.Count < 1);
