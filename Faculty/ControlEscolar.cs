@@ -135,16 +135,6 @@ namespace Faculty
             reprobados.ForEach(r => 
                 r.Calificaciones.ForEach(c => 
                     r.Materias.Add(materias.Find(m => m.Clave == c.ClaveMat))));
-            
-            //reprobados.ForEach(r =>
-            //{
-                
-            //    r.Calificaciones.ForEach(c =>
-            //    {
-            //        r.Materias.Add(new Materia(c.ClaveMat, materias.Find(m => (c.ClaveMat == m.Clave)).Nombre, materias.Find(m => (c.ClaveMat == m.Clave)).Creditos));
-            //    });
-            //}
-            //);
 
             return reprobados;
         }
