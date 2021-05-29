@@ -78,7 +78,8 @@ namespace Faculty
             List<Reporte> reportes=new List<Reporte>();
             alumnos.ForEach(a =>
             {
-               reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+                if (NumMateriasCursadas(a.Matricula) > 0)
+                    reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
             });
             
             reportes.ForEach(r =>
@@ -104,27 +105,40 @@ namespace Faculty
             return reportes;
         }
 
+        public int NumMateriasCursadas(int matricula)
+        {
+            int materiasCursadas = 0; ;
+            calificaciones.FindAll(c => c.MatriculaAl == matricula).ForEach(c => 
+            {
+                if (c.CalificacionObtenida > 0) 
+                    materiasCursadas++;
+            });
+            return materiasCursadas;
+        }
+        
         public List<Reporte> GetPromedioParcial()
         {
-            List<Reporte> reportes=new List<Reporte>();
+            List<Reporte> reportes = new List<Reporte>();
             alumnos.ForEach(a =>
             {
-               reportes.Add(new Reporte(a,calificaciones.FindAll(c=>c.MatriculaAl==a.Matricula)));
+                if(NumMateriasCursadas(a.Matricula) > 0)
+                    reportes.Add(new Reporte(a, calificaciones.FindAll(c => c.MatriculaAl == a.Matricula && c.CalificacionObtenida>=70))) ;
             });
-            
+
+            reportes.RemoveAll(r => r.Calificaciones.Count < 1);
+
             reportes.ForEach(r =>
             {
-                int i = 0, materiasCursadas=0;
+                int i = 0;
                 r.Calificaciones.ForEach(c =>
                 {
                     if (c.CalificacionObtenida >= 70) {
                         i += c.CalificacionObtenida;
-                        materiasCursadas++;
                     }
                 });
-
-                if (materiasCursadas > 0) r.Promedio = i / materiasCursadas;
-                else r.Promedio = 0;
+                r.Promedio = i / r.Calificaciones.Count;
+                
+                
             });
             return reportes;
         }

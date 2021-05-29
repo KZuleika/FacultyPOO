@@ -18,5 +18,6 @@ namespace Faculty
             Calificaciones = calificaciones;
             Promedio = -1;
         }
+
     }
 }
