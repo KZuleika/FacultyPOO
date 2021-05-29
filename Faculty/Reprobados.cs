@@ -18,5 +18,18 @@ namespace Faculty
             Calificaciones = calificaciones;
             Materias = new List<Materia> ();
         }
+
+        public float CalcularPromedio()
+        {
+            int promedio = 0;
+
+            if (Calificaciones.Count > 0)
+            {
+                Calificaciones.ForEach(c => promedio += c.CalificacionObtenida);
+                promedio /= Calificaciones.Count;
+            }
+
+            return promedio;
+        }
     }
 }
