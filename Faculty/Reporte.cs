@@ -12,19 +12,6 @@ namespace Faculty
         public List<Calificacion> Calificaciones { get; }
         public List<Materia> Materias { get; }
 
-        public float Promedio
-        {
-            get
-            {
-                float promedio = 0f;
-                if (Calificaciones.Count > 0)
-                {
-                    Calificaciones.ForEach(c => promedio += c.CalificacionObtenida);
-                    promedio /= Calificaciones.Count;
-                }
-                return promedio;
-            }
-        }
         public Reporte(Alumno alumno, List<Calificacion> calificaciones)
         {
             Alumno = alumno;
@@ -39,15 +26,15 @@ namespace Faculty
             Materias = materias;
         }
 
-        //public float Promedio()
-        //{
-        //    float promedio = 0f;
-        //    if (Calificaciones.Count > 0)
-        //    {
-        //        Calificaciones.ForEach(c => promedio += c.CalificacionObtenida);
-        //        promedio /= Calificaciones.Count;
-        //    }
-        //    return promedio;
-        //}
+        public float Promedio()
+        {
+            float promedio = 0f;
+            if (Calificaciones.Count > 0)
+            {
+                Calificaciones.ForEach(c => promedio += c.CalificacionObtenida);
+                promedio /= Calificaciones.Count;
+            }
+            return promedio;
+        }
     }
 }

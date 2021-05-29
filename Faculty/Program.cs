@@ -247,7 +247,7 @@ namespace Faculty
 
             WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO GENERAL\n");
             controlEscolar.GetPromedio().ForEach(r => {
-                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio}");
+                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio()}");
             });
             WriteLine();
             ReadKey();
@@ -262,7 +262,7 @@ namespace Faculty
 
             WriteLine("MATRICULA\tAPELLIDO, NOMBRE\tPROMEDIO PARCIAL\n");
             controlEscolar.GetPromedioParcial().ForEach(r => {
-                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio}");
+                WriteLine($"{r.Alumno.Matricula} - {r.Alumno.NombreCompleto} - {r.Promedio()}");
             });
             WriteLine();
             ReadKey();
