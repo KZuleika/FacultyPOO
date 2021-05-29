@@ -68,8 +68,6 @@ namespace Faculty
             return -1; //no cursada
         }
 
-
-
         public void AsignarCalificacion(int matricula, int clave, int calificacion)
         {
             calificaciones.Find(c => (c.ClaveMat == clave && c.MatriculaAl == matricula)).CalificacionObtenida = calificacion;
