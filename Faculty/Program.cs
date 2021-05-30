@@ -112,7 +112,7 @@ namespace Faculty
                 }
                 else
                 {
-                    WriteLine("CLAV DE NO VÁLIDA");
+                    WriteLine("CLAVE DE MATERIA NO VÁLIDA");
                     WriteLine("\nLa clave de la materia que ingresó NO está en uso por lo que no es válida. ");
                 }
             }
